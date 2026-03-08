@@ -43,7 +43,7 @@ LAZY.NVIM ~
 
 >lua
     {
-      "karlcayme/bearded-arc.nvim",
+      "kcayme/bearded-arc.nvim",
       lazy = false,
       priority = 1000,
       opts = {},
@@ -54,7 +54,7 @@ LAZY.NVIM ~
 PACKER.NVIM ~
 
 >lua
-    use { "karlcayme/bearded-arc.nvim" }
+    use { "kcayme/bearded-arc.nvim" }
 <
 
 
