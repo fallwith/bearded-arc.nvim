@@ -12,6 +12,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - run: mkdir -p doc
       - uses: kdheepak/panvimdoc@main
         with:
           vimdoc: bearded-arc
