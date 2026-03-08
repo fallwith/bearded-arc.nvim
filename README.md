@@ -2,6 +2,9 @@
 
 A dark Neovim port based on the [Bearded Theme Arc](https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme) for VS Code.
 
+![JSX](./assets/sample_1.png)
+![Go](./assets/sample_2.png)
+
 ## Features
 
 - Treesitter and LSP semantic token support
