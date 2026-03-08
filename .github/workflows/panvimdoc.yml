@@ -1,0 +1,21 @@
+name: panvimdoc
+
+on:
+  push:
+    branches: [main]
+    paths: [README.md]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: kdheepak/panvimdoc@main
+        with:
+          vimdoc: bearded-arc
+          description: "A dark Neovim colorscheme based on the Bearded Theme Arc variant"
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: auto-generate vimdoc"
