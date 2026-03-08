@@ -7,6 +7,7 @@ M.plugins = {
   ["nvim-cmp"] = "cmp",
   ["nvim-cokeline"] = "cokeline",
   ["nvim-dap"] = "dap",
+  ["fff.nvim"] = "fff",
   ["flash.nvim"] = "flash",
   ["fzf-lua"] = "fzf",
   ["gitsigns.nvim"] = "gitsigns",
