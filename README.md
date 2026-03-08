@@ -1,6 +1,6 @@
 # bearded-arc.nvim
 
-A dark Neovim colorscheme based on the [Bearded Theme Arc](https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme) variant for VS Code.
+A dark Neovim port based on the [Bearded Theme Arc](https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme) for VS Code.
 
 ## Features
 
