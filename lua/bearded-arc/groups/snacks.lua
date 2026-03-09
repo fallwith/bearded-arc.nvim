@@ -2,8 +2,8 @@ local M = {}
 
 function M.get(c, opts)
   return {
-    SnacksNormal = { bg = c.bg_float, fg = c.fg },
-    SnacksBorder = { fg = c.fg_dim, bg = c.bg_float },
+    SnacksNormal = { bg = c.float_bg, fg = c.fg },
+    SnacksBorder = { fg = c.fg_dim, bg = c.float_bg },
     SnacksTitle = { fg = c.blue, bold = true },
     SnacksFooter = { fg = c.fg_dim },
     SnacksBackdrop = { bg = c.bg_darker },
@@ -28,8 +28,8 @@ function M.get(c, opts)
     SnacksPickerPreview = { bg = c.bg },
     SnacksPickerPreviewBorder = { fg = c.fg_dim },
     SnacksPickerPreviewTitle = { fg = c.blue, bold = true },
-    SnacksPickerList = { bg = c.bg_float },
-    SnacksPickerListBorder = { fg = c.fg_dim, bg = c.bg_float },
+    SnacksPickerList = { bg = c.float_bg },
+    SnacksPickerListBorder = { fg = c.fg_dim, bg = c.float_bg },
     SnacksPickerListTitle = { fg = c.blue, bold = true },
     SnacksIndent = { fg = "#263042", nocombine = true },
     SnacksIndentScope = { fg = c.white, nocombine = true },

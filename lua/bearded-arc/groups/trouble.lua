@@ -2,7 +2,7 @@ local M = {}
 
 function M.get(c, opts)
   return {
-    TroubleNormal = { bg = c.bg_float, fg = c.fg },
+    TroubleNormal = { bg = c.sidebar_bg, fg = c.fg },
     TroubleText = { fg = c.fg },
     TroubleCount = { fg = c.purple, bg = c.bg_popup },
     TroubleIndent = { fg = c.fg_dim },

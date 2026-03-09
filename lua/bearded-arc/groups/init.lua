@@ -51,6 +51,14 @@ function M.get_enabled(opts)
 end
 
 function M.setup(palette, opts)
+  local transparent = opts.transparent
+  palette.sidebar_bg = (transparent or opts.styles.sidebars == "transparent") and palette.none
+    or opts.styles.sidebars == "normal" and palette.bg
+    or palette.bg_dark
+  palette.float_bg = (transparent or opts.styles.floats == "transparent") and palette.none
+    or opts.styles.floats == "normal" and palette.bg
+    or palette.bg_float
+
   local groups = {}
 
   -- Always load core groups

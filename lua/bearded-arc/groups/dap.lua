@@ -64,7 +64,7 @@ function M.get(c, opts)
     NvimDapViewExceptionFilterEnabled = { fg = c.green },
     NvimDapViewExceptionFilterDisabled = { fg = c.light_grey },
 
-    NvimDapViewTab = { fg = c.light_grey, bg = c.bg_dark },
+    NvimDapViewTab = { fg = c.light_grey, bg = c.sidebar_bg },
     NvimDapViewTabSelected = { fg = c.fg, bg = c.bg },
 
     NvimDapViewControlNC = { fg = c.fg_dim },

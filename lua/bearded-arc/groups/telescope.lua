@@ -2,15 +2,15 @@ local M = {}
 
 function M.get(c, opts)
   return {
-    TelescopeNormal = { bg = c.bg_float, fg = c.fg },
-    TelescopeBorder = { fg = c.fg_dim, bg = c.bg_float },
+    TelescopeNormal = { bg = c.float_bg, fg = c.fg },
+    TelescopeBorder = { fg = c.fg_dim, bg = c.float_bg },
     TelescopeTitle = { fg = c.blue, bold = true },
-    TelescopePromptNormal = { bg = c.bg_float },
-    TelescopePromptBorder = { fg = c.fg_dim, bg = c.bg_float },
+    TelescopePromptNormal = { bg = c.float_bg },
+    TelescopePromptBorder = { fg = c.fg_dim, bg = c.float_bg },
     TelescopePromptTitle = { fg = c.blue, bold = true },
     TelescopePromptPrefix = { fg = c.blue },
-    TelescopeResultsNormal = { bg = c.bg_float },
-    TelescopeResultsBorder = { fg = c.fg_dim, bg = c.bg_float },
+    TelescopeResultsNormal = { bg = c.float_bg },
+    TelescopeResultsBorder = { fg = c.fg_dim, bg = c.float_bg },
     TelescopeResultsTitle = { fg = c.blue, bold = true },
     TelescopePreviewNormal = { bg = c.bg },
     TelescopePreviewBorder = { fg = c.fg_dim, bg = c.bg },

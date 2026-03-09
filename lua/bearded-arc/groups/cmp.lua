@@ -4,9 +4,9 @@ function M.get(c, opts)
   return {
     CmpItemAbbr = { fg = c.fg },
     CmpItemAbbrMatch = { fg = c.blue, bold = true },
-    CmpDoc = { bg = c.bg_dark },
-    CmpDocBorder = { fg = c.fg_dim, bg = c.bg_dark },
-    CmpPmenu = { bg = c.bg_dark },
+    CmpDoc = { bg = c.float_bg },
+    CmpDocBorder = { fg = c.fg_dim, bg = c.float_bg },
+    CmpPmenu = { bg = c.float_bg },
     CmpSel = { link = "PmenuSel", bold = true },
     CmpBorder = { fg = c.fg_dim },
 

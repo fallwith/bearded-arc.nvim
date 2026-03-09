@@ -7,7 +7,7 @@ function M.get(c, opts)
   return {
     -- Editor UI
     Normal = { fg = c.fg, bg = transparent and c.none or c.bg },
-    NormalFloat = { fg = c.fg, bg = transparent and c.none or c.bg_float },
+    NormalFloat = { fg = c.fg, bg = c.float_bg },
     NormalNC = { fg = c.fg, bg = dim_inactive and c.bg_dark or (transparent and c.none or c.bg) },
     Cursor = { fg = c.bg, bg = c.fg },
     lCursor = { fg = c.bg, bg = c.fg },
@@ -21,8 +21,8 @@ function M.get(c, opts)
     WinSeparator = { fg = c.bg_visual },
     Folded = { fg = c.fg_dim, bg = c.bg_highlight },
     FoldColumn = { fg = c.fg_gutter, bg = transparent and c.none or c.bg },
-    StatusLine = { fg = c.fg, bg = c.bg_status },
-    StatusLineNC = { fg = c.fg_dim, bg = c.bg_dark },
+    StatusLine = { fg = c.fg, bg = c.sidebar_bg == c.none and c.none or c.bg_status },
+    StatusLineNC = { fg = c.fg_dim, bg = c.sidebar_bg },
     TabLine = { fg = c.fg_dim, bg = c.bg_dark },
     TabLineFill = { bg = c.bg_darker },
     TabLineSel = { fg = c.fg, bg = c.bg },
@@ -32,8 +32,8 @@ function M.get(c, opts)
     PmenuSel = { bg = c.bg_visual },
     PmenuSbar = { bg = c.bg_popup },
     PmenuThumb = { bg = c.fg_gutter },
-    FloatBorder = { fg = c.fg_gutter, bg = transparent and c.none or c.bg_float },
-    FloatTitle = { fg = c.blue, bg = transparent and c.none or c.bg_float },
+    FloatBorder = { fg = c.fg_gutter, bg = c.float_bg },
+    FloatTitle = { fg = c.blue, bg = c.float_bg },
     WildMenu = { fg = c.fg, bg = c.bg_visual },
     Search = { fg = c.bg, bg = c.cyan },
     IncSearch = { fg = c.bg, bg = c.cyan },
@@ -126,7 +126,7 @@ function M.get(c, opts)
     LspReferenceRead = { bg = c.bg_highlight },
     LspReferenceWrite = { bg = c.bg_highlight, bold = true },
     LspSignatureActiveParameter = { fg = c.orange, bold = true },
-    LspInfoBorder = { fg = c.fg_gutter, bg = c.bg_float },
+    LspInfoBorder = { fg = c.fg_gutter, bg = c.float_bg },
 
     -- Diff
     DiffAdd = { bg = "#192d24" },

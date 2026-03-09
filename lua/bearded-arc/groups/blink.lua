@@ -2,8 +2,8 @@ local M = {}
 
 function M.get(c, opts)
   return {
-    BlinkCmpMenu = { bg = c.bg_float, fg = c.fg },
-    BlinkCmpMenuBorder = { fg = c.fg_dim, bg = c.bg_float },
+    BlinkCmpMenu = { bg = c.float_bg, fg = c.fg },
+    BlinkCmpMenuBorder = { fg = c.fg_dim, bg = c.float_bg },
     BlinkCmpMenuSelection = { bg = c.bg_visual },
     BlinkCmpLabel = { fg = c.fg },
     BlinkCmpLabelMatch = { fg = c.blue, bold = true },
@@ -27,8 +27,8 @@ function M.get(c, opts)
     BlinkCmpKindStruct = { fg = c.purple },
     BlinkCmpKindType = { fg = c.purple },
     BlinkCmpGhostText = { fg = c.fg_dim },
-    BlinkCmpDoc = { bg = c.bg_float },
-    BlinkCmpDocBorder = { fg = c.fg_dim, bg = c.bg_float },
+    BlinkCmpDoc = { bg = c.float_bg },
+    BlinkCmpDocBorder = { fg = c.fg_dim, bg = c.float_bg },
   }
 end
 

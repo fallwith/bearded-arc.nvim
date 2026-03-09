@@ -10,6 +10,8 @@ M.defaults = {
     functions = {},
     variables = {},
     strings = {},
+    sidebars = "dark", -- "dark" | "transparent" | "normal"
+    floats = "dark", -- "dark" | "transparent" | "normal"
   },
   on_colors = function(colors) end,
   on_highlights = function(highlights, colors) end,
