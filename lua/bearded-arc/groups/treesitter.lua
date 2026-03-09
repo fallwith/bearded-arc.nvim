@@ -55,6 +55,10 @@ function M.get(c, opts)
     ["@keyword.directive"] = { fg = c.yellow },
     ["@keyword.type"] = { fg = c.cyan },               -- type/struct/interface/class keyword
     ["@keyword.coroutine"] = { fg = c.cyan },          -- async/await
+    ["@keyword.coroutine.typescript"] = { fg = c.yellow }, -- Promise (via custom query)
+    ["@keyword.coroutine.tsx"] = { fg = c.yellow },        -- Promise (via custom query)
+    ["@keyword.coroutine.javascript"] = { fg = c.yellow }, -- Promise (via custom query)
+    ["@keyword.coroutine.jsx"] = { fg = c.yellow },        -- Promise (via custom query)
     ["@keyword.modifier"] = { fg = c.cyan },           -- private, readonly, static, etc.
     ["@keyword.debug"] = { fg = c.orange },            -- Svelte {#debug}
 
