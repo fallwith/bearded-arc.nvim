@@ -3,7 +3,10 @@ name: panvimdoc
 on:
   push:
     branches: [main]
-    paths: [README.md]
+    paths:
+      - README.md
+      - doc/Configuration.md
+      - doc/Recipes.md
   workflow_dispatch:
 
 jobs:
@@ -14,9 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: mkdir -p doc
+      - name: Combine docs into single markdown
+        run: |
+          {
+            cat README.md
+            echo ""
+            cat doc/Configuration.md
+            echo ""
+            cat doc/Recipes.md
+          } > doc/_combined.md
       - uses: kdheepak/panvimdoc@main
         with:
           vimdoc: bearded-arc
+          pandoc: doc/_combined.md
           description: "A dark Neovim colorscheme based on the Bearded Theme Arc variant"
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
