@@ -10,7 +10,23 @@ Table of Contents                              *bearded-arc-table-of-contents*
   - Usage                                 |bearded-arc-bearded-arc.nvim-usage|
   - Help                                   |bearded-arc-bearded-arc.nvim-help|
   - Configuration                 |bearded-arc-bearded-arc.nvim-configuration|
-2. Links                                                   |bearded-arc-links|
+2. Configuration                                   |bearded-arc-configuration|
+  - Options Reference            |bearded-arc-configuration-options-reference|
+  - Full Default Configuration|bearded-arc-configuration-full-default-configuration|
+3. Recipes                                               |bearded-arc-recipes|
+  - Transparent Background        |bearded-arc-recipes-transparent-background|
+  - Italic Keywords                      |bearded-arc-recipes-italic-keywords|
+  - Bold Functions and Italic Comments|bearded-arc-recipes-bold-functions-and-italic-comments|
+  - No Italics at All                  |bearded-arc-recipes-no-italics-at-all|
+  - Catppuccin-Flavored Greens|bearded-arc-recipes-catppuccin-flavored-greens|
+  - Custom Background                  |bearded-arc-recipes-custom-background|
+  - Borderless Telescope            |bearded-arc-recipes-borderless-telescope|
+  - Brighter Line Numbers          |bearded-arc-recipes-brighter-line-numbers|
+  - Enabling Undercurl                |bearded-arc-recipes-enabling-undercurl|
+  - Underline Diagnostics Instead of Undercurl|bearded-arc-recipes-underline-diagnostics-instead-of-undercurl|
+  - Dim Inactive Windows with Transparency|bearded-arc-recipes-dim-inactive-windows-with-transparency|
+  - Accessing the Palette Programmatically|bearded-arc-recipes-accessing-the-palette-programmatically|
+4. Links                                                   |bearded-arc-links|
 
 ==============================================================================
 1. bearded-arc.nvim                             *bearded-arc-bearded-arc.nvim*
@@ -113,8 +129,435 @@ override defaults:
     })
 <
 
+
 ==============================================================================
-2. Links                                                   *bearded-arc-links*
+2. Configuration                                   *bearded-arc-configuration*
+
+Configuration is entirely optional. Call `setup` **before** loading the
+colorscheme to override defaults:
+
+>lua
+    require("bearded-arc").setup({
+      -- options
+    })
+    vim.cmd.colorscheme("bearded-arc")
+<
+
+If `setup` is not called, the colorscheme uses sensible defaults.
+
+
+OPTIONS REFERENCE                *bearded-arc-configuration-options-reference*
+
+
+TRANSPARENT ~
+
+  --------- ---------
+  Type      boolean
+  Default   false
+  --------- ---------
+Removes background colors from `Normal`, `NormalFloat`, `SignColumn`,
+`FloatBorder`, `FloatTitle`, `WinBar`, `WinBarNC`, and `FoldColumn`, allowing
+the terminal background to show through.
+
+>lua
+    require("bearded-arc").setup({
+      transparent = true,
+    })
+<
+
+
+TERMINAL_COLORS ~
+
+  --------- ---------
+  Type      boolean
+  Default   true
+  --------- ---------
+Sets the 16 ANSI terminal colors (`vim.g.terminal_color_0` through
+`vim.g.terminal_color_15`) so that Neovim’s built-in terminal matches the
+theme. See Palette#Terminal Colors <Palette#terminal-colors> for the values.
+
+>lua
+    require("bearded-arc").setup({
+      terminal_colors = false, -- disable terminal color overrides
+    })
+<
+
+
+DIM_INACTIVE ~
+
+  --------- ---------
+  Type      boolean
+  Default   false
+  --------- ---------
+Uses a slightly darker background (`bg_dark` / `#171e2b`) for inactive windows,
+making it easier to distinguish the focused window.
+
+Affected groups: `NormalNC`, `WinBarNC`.
+
+>lua
+    require("bearded-arc").setup({
+      dim_inactive = true,
+    })
+<
+
+
+STYLES ~
+
+  --------- -----------
+  Type      table
+  Default   See below
+  --------- -----------
+Controls font attributes for common syntax categories. Each key accepts a table
+of highlight attributes such as `italic`, `bold`, `underline`, `undercurl`,
+`strikethrough`, and `sp`.
+
+>lua
+    -- defaults
+    styles = {
+      comments  = { italic = true },
+      keywords  = {},
+      functions = {},
+      variables = {},
+      strings   = {},
+    }
+<
+
+These are merged into the corresponding base highlight groups using
+`vim.tbl_extend("force")`, so you can combine multiple attributes:
+
+>lua
+    require("bearded-arc").setup({
+      styles = {
+        comments  = { italic = true, bold = true },
+        keywords  = { italic = true },
+        functions = { bold = true },
+        variables = {},
+        strings   = { italic = true },
+      },
+    })
+<
+
+**Which groups are affected:**
+
+  Style key   Highlight groups
+  ----------- -----------------------------------------
+  comments    Comment
+  keywords    Keyword, Conditional, Repeat, Exception
+  functions   Function
+  variables   Identifier
+  strings     String
+
+ON_COLORS ~
+
+  --------- ----------------------
+  Type      function(colors)
+  Default   function(colors) end
+  --------- ----------------------
+A callback invoked during palette setup, **before** highlight groups are
+generated. Use this to override any palette color. The `colors` table is
+mutated in place.
+
+>lua
+    require("bearded-arc").setup({
+      on_colors = function(colors)
+        colors.blue = "#89b4fa"
+        colors.bg = "#1e1e2e"
+      end,
+    })
+<
+
+See Palette <Palette> for all available color keys.
+
+
+ON_HIGHLIGHTS ~
+
+  --------- ----------------------------------
+  Type      function(highlights, colors)
+  Default   function(highlights, colors) end
+  --------- ----------------------------------
+A callback invoked **after** all highlight groups have been generated but
+**before** they are applied. Use this to override or add highlight groups. Both
+arguments are mutated in place.
+
+- `highlights` - table of all highlight group definitions
+- `colors` - the resolved palette (after `on_colors`)
+
+>lua
+    require("bearded-arc").setup({
+      on_highlights = function(hl, c)
+        hl.Comment = { fg = c.fg_muted, italic = true }
+        hl.CursorLine = { bg = "#2a3445" }
+      end,
+    })
+<
+
+
+PLUGINS ~
+
+  --------- -----------
+  Type      table
+  Default   See below
+  --------- -----------
+Controls which plugin highlight groups are loaded. See Plugins <Plugins> for
+full details.
+
+>lua
+    -- defaults
+    plugins = {
+      all  = package.loaded.lazy == nil, -- true if lazy.nvim is NOT loaded
+      auto = true,                       -- auto-detect via lazy.nvim
+    }
+<
+
+  -----------------------------------------------------------------------
+  Key                     Type                    Description
+  ----------------------- ----------------------- -----------------------
+  all                     boolean                 If true, load
+                                                  highlights for every
+                                                  supported plugin
+                                                  regardless of
+                                                  detection. Defaults to
+                                                  true only when
+                                                  lazy.nvim is not
+                                                  present.
+
+  auto                    boolean                 If true, detect
+                                                  installed plugins
+                                                  through lazy.nvim and
+                                                  load only their
+                                                  highlights.
+
+  <plugin-key>            boolean                 Force-enable (true) or
+                                                  force-disable (false) a
+                                                  specific plugin.
+                                                  Overrides both all and
+                                                  auto.
+  -----------------------------------------------------------------------
+>lua
+    require("bearded-arc").setup({
+      plugins = {
+        all = false,
+        auto = true,
+        telescope = true,  -- always load telescope highlights
+        gitsigns = false,  -- never load gitsigns highlights
+      },
+    })
+<
+
+
+FULL DEFAULT CONFIGURATION*bearded-arc-configuration-full-default-configuration*
+
+>lua
+    require("bearded-arc").setup({
+      transparent = false,
+      terminal_colors = true,
+      dim_inactive = false,
+      styles = {
+        comments = { italic = true },
+        keywords = {},
+        functions = {},
+        variables = {},
+        strings = {},
+      },
+      on_colors = function(colors) end,
+      on_highlights = function(highlights, colors) end,
+      plugins = {
+        all = package.loaded.lazy == nil,
+        auto = true,
+      },
+    })
+<
+
+
+==============================================================================
+3. Recipes                                               *bearded-arc-recipes*
+
+Common customization patterns for bearded-arc.nvim.
+
+
+TRANSPARENT BACKGROUND            *bearded-arc-recipes-transparent-background*
+
+>lua
+    require("bearded-arc").setup({
+      transparent = true,
+    })
+<
+
+
+ITALIC KEYWORDS                          *bearded-arc-recipes-italic-keywords*
+
+>lua
+    require("bearded-arc").setup({
+      styles = {
+        keywords = { italic = true },
+      },
+    })
+<
+
+
+BOLD FUNCTIONS AND ITALIC COMMENTS*bearded-arc-recipes-bold-functions-and-italic-comments*
+
+>lua
+    require("bearded-arc").setup({
+      styles = {
+        comments = { italic = true },
+        functions = { bold = true },
+      },
+    })
+<
+
+
+NO ITALICS AT ALL                      *bearded-arc-recipes-no-italics-at-all*
+
+>lua
+    require("bearded-arc").setup({
+      styles = {
+        comments = {},
+      },
+    })
+<
+
+
+CATPPUCCIN-FLAVORED GREENS    *bearded-arc-recipes-catppuccin-flavored-greens*
+
+Override the green palette color to change strings, success diagnostics, and
+diffs everywhere:
+
+>lua
+    require("bearded-arc").setup({
+      on_colors = function(colors)
+        colors.green = "#a6e3a1"
+      end,
+    })
+<
+
+
+CUSTOM BACKGROUND                      *bearded-arc-recipes-custom-background*
+
+>lua
+    require("bearded-arc").setup({
+      on_colors = function(colors)
+        colors.bg = "#1e1e2e"
+        colors.bg_dark = "#181825"
+        colors.bg_float = "#1e1e2e"
+      end,
+    })
+<
+
+
+BORDERLESS TELESCOPE                *bearded-arc-recipes-borderless-telescope*
+
+>lua
+    require("bearded-arc").setup({
+      on_highlights = function(hl, c)
+        hl.TelescopeNormal = { fg = c.fg, bg = c.bg_dark }
+        hl.TelescopeBorder = { fg = c.bg_dark, bg = c.bg_dark }
+        hl.TelescopePromptNormal = { fg = c.fg, bg = c.bg_popup }
+        hl.TelescopePromptBorder = { fg = c.bg_popup, bg = c.bg_popup }
+        hl.TelescopePromptTitle = { fg = c.bg, bg = c.blue, bold = true }
+        hl.TelescopePreviewTitle = { fg = c.bg, bg = c.green, bold = true }
+        hl.TelescopeResultsTitle = { fg = c.bg_dark, bg = c.bg_dark }
+      end,
+    })
+<
+
+
+BRIGHTER LINE NUMBERS              *bearded-arc-recipes-brighter-line-numbers*
+
+>lua
+    require("bearded-arc").setup({
+      on_highlights = function(hl, c)
+        hl.LineNr = { fg = c.fg_muted }
+        hl.CursorLineNr = { fg = c.yellow, bold = true }
+      end,
+    })
+<
+
+
+ENABLING UNDERCURL                    *bearded-arc-recipes-enabling-undercurl*
+
+bearded-arc uses `undercurl` for diagnostics and spell-check highlights by
+default. If undercurls appear as plain underlines, your terminal or multiplexer
+likely needs configuration.
+
+
+SUPPORTED TERMINALS ~
+
+Undercurl works out of the box in: **Kitty**, **WezTerm**, **Ghostty**,
+**iTerm2** (3.4+), **Alacritty** (0.14+), **foot**.
+
+**Apple Terminal does not support undercurl.**
+
+
+TMUX ~
+
+tmux strips undercurl escape sequences by default. Add the following to
+`~/.tmux.conf`:
+
+>tmux
+    set -g default-terminal "tmux-256color"
+    set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'
+    set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
+<
+
+Then restart tmux completely:
+
+>sh
+    tmux kill-server
+<
+
+
+VERIFYING ~
+
+Run the following in Neovim to confirm undercurl is active:
+
+>vim
+    :highlight DiagnosticUnderlineError
+<
+
+The output should include `cterm=undercurl gui=undercurl`.
+
+
+UNDERLINE DIAGNOSTICS INSTEAD OF UNDERCURL*bearded-arc-recipes-underline-diagnostics-instead-of-undercurl*
+
+>lua
+    require("bearded-arc").setup({
+      on_highlights = function(hl, c)
+        hl.DiagnosticUnderlineError = { underline = true, sp = c.error }
+        hl.DiagnosticUnderlineWarn = { underline = true, sp = c.warning }
+        hl.DiagnosticUnderlineInfo = { underline = true, sp = c.info }
+        hl.DiagnosticUnderlineHint = { underline = true, sp = c.hint }
+      end,
+    })
+<
+
+
+DIM INACTIVE WINDOWS WITH TRANSPARENCY*bearded-arc-recipes-dim-inactive-windows-with-transparency*
+
+>lua
+    require("bearded-arc").setup({
+      transparent = true,
+      dim_inactive = true,
+    })
+<
+
+Note: When both are enabled, inactive windows use `bg_dark` while the active
+window has a transparent background.
+
+
+ACCESSING THE PALETTE PROGRAMMATICALLY*bearded-arc-recipes-accessing-the-palette-programmatically*
+
+>lua
+    -- after the colorscheme is loaded
+    local palette = require("bearded-arc").palette()
+    print(palette.blue) -- #69C3FF
+<
+
+This is useful for integrating the theme colors into other plugin
+configurations (statuslines, etc.).
+
+==============================================================================
+4. Links                                                   *bearded-arc-links*
 
 1. *Neovim*: https://img.shields.io/badge/Neovim-%3E%3D0.8.0-57A143?logo=neovim&logoColor=white
 2. *License*: https://img.shields.io/github/license/kcayme/bearded-arc.nvim
