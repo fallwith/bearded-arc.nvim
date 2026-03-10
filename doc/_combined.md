@@ -3,7 +3,7 @@
 [![Neovim](https://img.shields.io/badge/Neovim-%3E%3D0.8.0-57A143?logo=neovim&logoColor=white)](https://neovim.io)
 [![License](https://img.shields.io/github/license/kcayme/bearded-arc.nvim)](https://github.com/kcayme/bearded-arc.nvim/blob/main/LICENSE)
 
-A dark Neovim port based on the [Bearded Theme Arc](https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme) for VS Code.
+A Neovim port of my favorite VSCode theme, [Bearded Theme Arc](https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme).
 
 ![JSX](./assets/sample_1.png)
 ![Go](./assets/sample_2.png)

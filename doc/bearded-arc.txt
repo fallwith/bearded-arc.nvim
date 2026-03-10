@@ -34,9 +34,8 @@ Table of Contents                              *bearded-arc-table-of-contents*
 <https://neovim.io>
 <https://github.com/kcayme/bearded-arc.nvim/blob/main/LICENSE>
 
-A dark Neovim port based on the Bearded Theme Arc
-<https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme>
-for VS Code.
+A Neovim port of my favorite VSCode theme, Bearded Theme Arc
+<https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme>.
 
 
 
