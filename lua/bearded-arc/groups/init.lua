@@ -20,6 +20,7 @@ M.plugins = {
   ["leap.nvim"] = "leap",
   ["markview.nvim"] = "markview",
   ["mason.nvim"] = "mason",
+  ["noice.nvim"] = "noice",
   ["nvim-notify"] = "notify",
   ["nvim-tree.lua"] = "nvim-tree",
   ["oil.nvim"] = "oil",
