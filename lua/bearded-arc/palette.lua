@@ -18,7 +18,7 @@ function M.setup(opts)
     fg = "#d8dde7",
     fg_muted = "#8196b5",
     fg_dim = "#536686",
-    fg_gutter = "#506a8a",
+    fg_gutter = "#a9b5ca",
 
     -- Accents
     blue = "#69C3FF",
@@ -33,10 +33,10 @@ function M.setup(opts)
     lime = "#A4EF58",
 
     -- Semantic
-    error = "#E35535",
-    warning = "#FF955C",
+    error = "#FF738A",
+    warning = "#B78AFF",
     info = "#69C3FF",
-    hint = "#4a5e78",
+    hint = "#EACD61",
     success = "#3CEC85",
 
     -- Base30 aliases
