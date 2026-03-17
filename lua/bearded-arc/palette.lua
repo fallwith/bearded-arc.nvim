@@ -15,7 +15,7 @@ function M.setup(opts)
     bg_highlight = "#263042",
 
     -- Foregrounds (Arc primary: #8196b5)
-    fg = "#d8dde7",
+    fg = "#d0d7e4",
     fg_muted = "#8196b5",
     fg_dim = "#536686",
     fg_gutter = "#536686",
@@ -42,7 +42,7 @@ function M.setup(opts)
     -- Base30 aliases
     black = "#1c2433",
     darker_black = "#171e2b",
-    white = "#d8dde7",
+    white = "#d0d7e4",
     grey = "#506a8a",
     sun = "#f0db8e",
     statusline_bg = "#212a3a",
@@ -59,7 +59,7 @@ function M.setup(opts)
     dark_purple = "#9a6ee0",
 
     -- Terminal colors (16 ANSI)
-    terminal_color_0 = "#0f1218",
+    terminal_color_0 = "#0a0d12",
     terminal_color_1 = "#E35535",
     terminal_color_2 = "#3CEC85",
     terminal_color_3 = "#EACD61",
@@ -67,14 +67,14 @@ function M.setup(opts)
     terminal_color_5 = "#F38CEC",
     terminal_color_6 = "#22ECDB",
     terminal_color_7 = "#FFFFFF",
-    terminal_color_8 = "#526587",
+    terminal_color_8 = "#495e85",
     terminal_color_9 = "#e97b62",
     terminal_color_10 = "#6af1a2",
     terminal_color_11 = "#f0db8e",
     terminal_color_12 = "#9cd7ff",
     terminal_color_13 = "#f8baf4",
     terminal_color_14 = "#51f0e3",
-    terminal_color_15 = "#f8f9fa",
+    terminal_color_15 = "#f0f3f7",
   }
 
   opts.on_colors(colors)
