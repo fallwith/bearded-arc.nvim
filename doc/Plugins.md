@@ -1,6 +1,6 @@
 # Plugins
 
-bearded-arc.nvim ships with highlight groups for 71 popular plugins and can auto-detect which ones you have installed.
+bearded-arc.nvim ships with highlight groups for 72 popular plugins and can auto-detect which ones you have installed.
 
 ## Auto-Detection
 
@@ -24,6 +24,7 @@ You can override per-plugin with `plugins.<key> = true` or `false`, which takes 
 - [blink.cmp](https://github.com/Saghen/blink.cmp) — `blink` — Completion menu, borders, selection, and kind icons (35 groups)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) — `bufferline` — Tab/buffer line, separators, and indicators (30 groups)
 - [coc.nvim](https://github.com/neoclide/coc.nvim) — `coc` — VS Code-like completion with diagnostics, highlights, floating UI, inlay hints, and code lens (22 groups)
+- [codediff.nvim](https://github.com/esmuellert/codediff.nvim) — `codediff` — Side-by-side diff viewer with line/char diff, move detection, file explorer, and conflict resolution (23 groups)
 - [codeium.nvim](https://github.com/Exafunction/codeium.nvim) — `codeium` — AI inline completion suggestions (2 groups)
 - [colorful-winsep.nvim](https://github.com/nvim-zh/colorful-winsep.nvim) — `colorful-winsep` — Colorful window separator (1 group)
 - [copilot.vim](https://github.com/github/copilot.vim) / [copilot.lua](https://github.com/zbirenbaum/copilot.lua) — `copilot` — AI inline completion suggestions (2 groups)
